@@ -29,6 +29,8 @@ test('Add/create project', async ({ page }) => {
 test.afterEach(async ({ page }) => {
     const projectsPage = new PageObjects.ProjectsPage(page);
 
+    await projectsPage.navigateToProjectsPage();
+
     // Delete the created project
     await projectsPage.deleteProject(projectName);
     await projectsPage.searchProject(projectName);
