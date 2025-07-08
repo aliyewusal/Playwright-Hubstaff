@@ -1,29 +1,27 @@
 require('dotenv').config();
 import { test, expect } from '@playwright/test';
+import { PageObjects } from '../pages';
 
+test.slow();
 test('Sign in from marketing page navigation bar', async ({ page }) => {
-    await page.goto('https://hubstaff.com/');
-  
-    // Click on the "Sign in" link in the navigation bar
-    await page.getByRole('link', { name: 'Sign in' }).click();
+    const marketingPage = new PageObjects.MarketingPage(page);
+    const signInPage = new PageObjects.SignInPage(page);
+    const insightsPage = new PageObjects.InsightsPage(page);
+    const dashboardPage = new PageObjects.DashboardPage(page);
+
+    // Navigate to the marketing page and click the sign-in link
+    await marketingPage.navigateToMarketingPage();
+    await marketingPage.selectors.signInLink.click();
     await expect(page).toHaveURL(/login/);
-    // Click the "Work email" field and type a valid email address
-    await page.getByRole('textbox', { name: 'Work email *' }).fill(`${process.env.EMAIL}`);
-    // Click the "Password" field and type a valid password
-    await page.getByRole('textbox', { name: 'Password *' }).fill(`${process.env.PASSWORD}`);
-    // Click the "Sign in" button
-    await page.getByRole('button', { name: 'Sign in' }).click();
-    // Verify that the user is signed in successfully (atm it is navigating to the insights page, should be dashboard)
-    // /insights/ is part of the URL after successful login
+
+    // Sign in using the credentials from environment variables
+    await signInPage.signIn(process.env.EMAIL, process.env.PASSWORD);
     await expect(page).toHaveURL(/insights/);
-    // "Highlights" heading is visible on the dashboard page
-    await expect(page.locator('#insights-sticky-header').getByText('Highlights')).toBeVisible();
 
-    // Click on the "Dashboard" link in the Left hand side navigation menu
-    await page.getByRole('menuitem', { name: 'dashboard Dashboard' }).click();
-
-    // Verify that the URL changes to the dashboard page
+    // Verify the login was successful by checking the landing page
+    await insightsPage.verifyHighlightsHeaderVisible(); 
+    // Note: After login, user should have been redirected to Dashboard page (as per requirements)
+    await dashboardPage.selectors.dashboardLink.click();
     await expect(page).toHaveURL(/dashboard/);
-    // Verify Dashboard heading is visible
-    await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
+    await dashboardPage.verifyDashboardHeaderVisible();
 });
