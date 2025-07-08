@@ -1,7 +1,7 @@
 require('dotenv').config();
 import { test, expect } from '@playwright/test';
 
-test('Sign in from marketing page nagivation bar', async ({ page }) => {
+test('Sign in from marketing page navigation bar', async ({ page }) => {
     await page.goto('https://hubstaff.com/');
   
     // Click on the "Sign in" link in the navigation bar
