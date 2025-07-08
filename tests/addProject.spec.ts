@@ -1,22 +1,36 @@
 require('dotenv').config();
 import { test, expect } from '@playwright/test';
+import { PageObjects } from '../pages';
+
+const projectName = `Test Project ${Date.now()}`;
 
 test('Add/create project', async ({ page }) => {
-    await page.goto('https://app.hubstaff.com/projects');
+    const signInPage = new PageObjects.SignInPage(page);
+    const projectsPage = new PageObjects.ProjectsPage(page);
 
-    // Sign in
-    await page.getByRole('textbox', { name: 'Work email *' }).fill(`${process.env.EMAIL}`);
-    await page.getByRole('textbox', { name: 'Password *' }).fill(`${process.env.PASSWORD}`);
-    await page.getByRole('button', { name: 'Sign in' }).click();
+    // Navigate to the projects page
+    await projectsPage.navigateToProjectsPage();
 
-    // Create a new project
-    await page.locator('[data-original-title="Add new project to the organization"]').click();
-    await expect(page.getByRole('heading', { name: 'New project' })).toBeVisible();
-    const projectName = `Test Project ${Date.now()}`;
-    await page.getByRole('textbox', { name: 'Add project names separated' }).fill(projectName);
-    await page.getByRole('button', { name: 'Save' }).click();
+    // Sign in to the application
+    await signInPage.signIn(process.env.EMAIL, process.env.PASSWORD);
 
-    // Verify that the Project is created
-    await expect(page.getByText('Project created')).toBeVisible();
-    await expect(page.getByText(projectName)).toBeVisible();
+    // Verify that the user is on the projects page
+    await expect(projectsPage.selectors.addProjectButton).toBeVisible();
+
+    // Add a new project
+    await projectsPage.addProject(projectName);
+
+    // Verify that the project was created successfully
+    await expect(projectsPage.selectors.projectCreatedMessage).toBeVisible();
+    await projectsPage.searchProject(projectName);
+    await projectsPage.verifyProjectVisible(projectName);
+});
+
+test.afterEach(async ({ page }) => {
+    const projectsPage = new PageObjects.ProjectsPage(page);
+
+    // Delete the created project
+    await projectsPage.deleteProject(projectName);
+    await projectsPage.searchProject(projectName);
+    await expect(projectsPage.selectors.noProjectsMessage).toBeVisible();
 });

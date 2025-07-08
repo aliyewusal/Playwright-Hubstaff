@@ -3,10 +3,14 @@ import { expect, Locator, Page } from '@playwright/test';
 export default class MarketingPage {
   page: Page;
   selectors: { [key: string]: Locator | any };
+  marketingPageUrl: string;
+  
   constructor(page: Page) {
     this.page = page;
+    this.marketingPageUrl = '/';
     this.selectors = {
       freeTrialButton: page.getByRole('link', { name: 'Free 14-day trial' }).first(),
+      signInLink: page.getByRole('link', { name: 'Sign in' }),
       firstNameInput: page.getByTestId('first_name'),
       lastNameInput: page.getByTestId('last_name'),
       emailInput: page.getByTestId('email'),
@@ -24,7 +28,7 @@ export default class MarketingPage {
   }
 
   async navigateToMarketingPage() {
-    await this.page.goto('/');
+    await this.page.goto(this.marketingPageUrl);
   }
 
   async fillSignupForm(firstName: string, lastName: string, email: string, password: string) {
