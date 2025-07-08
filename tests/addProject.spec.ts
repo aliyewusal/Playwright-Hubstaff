@@ -9,7 +9,7 @@ test('Add/create project', async ({ page }) => {
     await page.getByRole('textbox', { name: 'Password *' }).fill(`${process.env.PASSWORD}`);
     await page.getByRole('button', { name: 'Sign in' }).click();
 
-    // Ceate a new project
+    // Create a new project
     await page.locator('[data-original-title="Add new project to the organization"]').click();
     await expect(page.getByRole('heading', { name: 'New project' })).toBeVisible();
     const projectName = `Test Project ${Date.now()}`;
