@@ -23,5 +23,5 @@ test('Sign in from marketing page navigation bar', async ({ page }) => {
     // Note: After login, user should have been redirected to Dashboard page (as per requirements)
     await dashboardPage.selectors.dashboardLink.click();
     await expect(page).toHaveURL(/dashboard/);
-    expect(await dashboardPage.verifyDashboardHeaderVisible()).toBeTruthy();
+    await dashboardPage.verifyDashboardHeaderVisible();
 });
