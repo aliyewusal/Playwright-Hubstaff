@@ -38,7 +38,7 @@ export default defineConfig({
 
   /* Sets the default maxDiffPixelRatio for toMatchSnapshot assertions to 0.05*/
   expect: {
-    toMatchSnapshot: { maxDiffPixelRatio: 0.1 },
+    toMatchSnapshot: { maxDiffPixelRatio: 0.05 },
   },
 
   /* Configure projects for major browsers */
