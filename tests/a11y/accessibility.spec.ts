@@ -8,6 +8,7 @@ test.describe('Accessibility scan on marketing page', () => {
         await marketingPage.navigateToMarketingPage();
 
         const accessibilityScanResults =  await makeAxeBuilder().analyze();
+        // TODO: Re-enable this assertion once all accessibility violations are resolved.
         // expect(accessibilityScanResults.violations).toEqual([]);
 
         expect(accessibilityScanResults.violations.length).toBeLessThan(10); // ideally should be 0
