@@ -83,6 +83,41 @@ npx playwright show-report
 ### Visual Regression
 The config sets `maxDiffPixelRatio` for snapshot comparisons. Adjust this in `playwright.config.ts` if needed.
 
+## Pipeline (CI/CD)
+This repository is designed to work seamlessly with Continuous Integration (CI) pipelines such as GitHub Actions, GitLab CI, or Azure Pipelines. Example pipeline features:
+- Install dependencies using `npm install`
+- Run Playwright tests with `npm test`
+- Collect and upload Playwright HTML reports and traces as build artifacts
+- Use environment variables for secure credentials (never commit secrets)
+- Optionally, run tests in headless mode and on multiple browsers
+
+### Example GitHub Actions Workflow
+```yaml
+name: Playwright Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run Playwright tests
+        run: npm test
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+```
+
+> Adjust the workflow for your CI provider as needed. Store sensitive data like EMAIL and PASSWORD in CI secrets, not in the repository.
+
 ## Useful Commands
 - `npm test` — Run all tests
 - `npx playwright show-report` — Open the HTML report
@@ -93,6 +128,3 @@ The config sets `maxDiffPixelRatio` for snapshot comparisons. Adjust this in `pl
 - `tests/` — Test specs and setup scripts
 - `playwright-report/` — Generated HTML reports (gitignored)
 - `test-results/` — Test artifacts (gitignored)
-
-## License
-This project is licensed under the ISC License.
