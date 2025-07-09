@@ -11,6 +11,37 @@ This repository contains automated end-to-end tests for the Hubstaff web applica
 - HTML test reports and trace collection on failures
 - Parallel test execution and CI-friendly configuration
 
+## Getting Started
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+
+### Installation
+```sh
+npm install
+```
+
+### Environment Variables
+Create a `.env` file in the root directory with the following content:
+```
+EMAIL=your-email@example.com
+PASSWORD=your-password
+```
+
+> **Note:** The `.env` file is excluded from version control.
+
+### Running Tests
+To run all tests:
+```sh
+npm test
+```
+
+### Test Reports
+After running tests, view the HTML report:
+```sh
+npx playwright show-report
+```
+
 ## Project Structure
 ```
 ├── pages/                # Page Object Models for Hubstaff app and Temp Email app
@@ -49,36 +80,7 @@ Visual regression testing is enabled using Playwright's snapshot feature. The `m
 - If the difference exceeds `maxDiffPixelRatio`, the test will fail
 - Adjust the value in the config to make comparisons stricter or more lenient
 
-## Getting Started
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v16+ recommended)
-
-### Installation
-```sh
-npm install
-```
-
-### Environment Variables
-Create a `.env` file in the root directory with the following content:
-```
-EMAIL=your-email@example.com
-PASSWORD=your-password
-```
-
-> **Note:** The `.env` file is excluded from version control.
-
-### Running Tests
-To run all tests:
-```sh
-npm test
-```
-
-### Test Reports
-After running tests, view the HTML report:
-```sh
-npx playwright show-report
-```
 
 ### Visual Regression
 The config sets `maxDiffPixelRatio` for snapshot comparisons. Adjust this in `playwright.config.ts` if needed.
