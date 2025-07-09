@@ -77,13 +77,9 @@ export default class TeamPaymentsPage {
     async verifyModalBody(modal: 'first' | 'second') {
         const modalBody = this.selectors.modalBody;
         if (modal === 'first') {
-            await expect(modalBody).toHaveScreenshot('first-payment-modal-body.png', {
-                maxDiffPixelRatio: 0.05,
-            });
+            await expect(modalBody).toHaveScreenshot('first-payment-modal-body.png');
         } else if (modal === 'second') {
-            await expect(modalBody).toHaveScreenshot('second-payment-modal-body.png', {
-                maxDiffPixelRatio: 0.05,
-            });
+            await expect(modalBody).toHaveScreenshot('second-payment-modal-body.png');
         }
     }
 

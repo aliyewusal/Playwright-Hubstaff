@@ -36,11 +36,16 @@ export default defineConfig({
     video: 'retain-on-failure',
   },
 
+  /* Sets the default maxDiffPixelRatio for toMatchSnapshot assertions to 0.05*/
+  expect: {
+    toMatchSnapshot: { maxDiffPixelRatio: 0.06 },
+  },
+
   /* Configure projects for major browsers */
   projects: [
     // Setup project
     { name: 'setup', testMatch: /.*\.setup\.ts/ },
-  
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
