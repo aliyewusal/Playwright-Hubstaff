@@ -100,6 +100,6 @@ export default class TeamPaymentsPage {
         await deleteButton.click();
 
         await expect(this.selectors.noteDeletedMessage).toBeVisible();
-        expect(this.selectors.cellByText(note)).not.toBeVisible();
+        await expect(this.selectors.cellByText(note)).not.toBeVisible();
     }
 }
