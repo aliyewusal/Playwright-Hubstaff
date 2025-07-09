@@ -143,6 +143,34 @@ npx playwright test tests/a11y/accessibility.spec.ts
 
 > Note: At the moment, there is only the Playwright reporter being used; for a more detailed view, you can implement [axe-html-reporter](https://www.npmjs.com/package/axe-html-reporter).
 
+## Playwright CTRF JSON Reporter for GitHub Actions
+
+To view test results directly in GitHub Actions, this project uses the [playwright-ctrf-json-reporter](https://github.com/ctrf-io/playwright-ctrf-json-reporter). This reporter generates a test summary in the [CTRf format](https://github.com/ctrf-io/ctrf), which can be published as part of your CI workflow.
+
+- The reporter outputs a `ctrf/ctrf-report.json` file after test execution.
+- In the GitHub Actions workflow, the following step publishes the test summary:
+  ```yaml
+  - name: Publish Test Summary Results
+    run: npx github-actions-ctrf ctrf/ctrf-report.json
+  ```
+- This allows you to see a summary of test results directly in the GitHub Actions UI.
+
+**Setup:**
+1. Install the reporter:
+   ```sh
+   npm install --save-dev playwright-ctrf-json-reporter
+   ```
+2. Add the reporter to your `playwright.config.ts`:
+   ```ts
+   reporter: [
+     ['playwright-ctrf-json-reporter', { outputFile: 'ctrf/ctrf-report.json' }],
+     // ...other reporters
+   ]
+   ```
+3. Ensure the GitHub Actions workflow includes the publish step as shown above.
+
+> For more details, see the [playwright-ctrf-json-reporter documentation](https://github.com/ctrf-io/playwright-ctrf-json-reporter).
+
 ## Useful Commands
 - `npm test` — Run all tests
 - `npx playwright show-report` — Open the HTML report
