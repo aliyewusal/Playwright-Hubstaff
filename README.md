@@ -120,6 +120,29 @@ jobs:
 
 > Adjust the workflow for your CI provider as needed. Store sensitive data like EMAIL and PASSWORD in CI secrets, not in the repository.
 
+## Accessibility Scans
+Accessibility testing is integrated using [axe-core](https://github.com/dequelabs/axe-core) with Playwright. This helps ensure the Hubstaff application meets accessibility standards and best practices.
+
+- The `fixtures/axe-fixture.ts` file sets up the axe accessibility scan as a Playwright fixture.
+- Accessibility tests are located in `tests/a11y/accessibility.spec.ts`.
+- The tests automatically scan pages and key UI components for accessibility issues.
+- Detected violations are reported in the test output for review and remediation.
+
+### How Accessibility Scans Work
+1. The axe fixture injects the axe-core library into the page during test execution.
+2. The test runs `axe.run()` to analyze the current page or component.
+3. Any accessibility violations are collected and cause the test to fail, with details printed in the report.
+
+### Running Accessibility Tests
+To run only the accessibility tests:
+```sh
+npx playwright test tests/a11y/accessibility.spec.ts
+```
+
+> Review and address any reported accessibility issues to improve the usability of the application for all users.
+
+> Note: At the moment there is only playwright reporter is being used, however for more detailed view [axe-html-reporter](https://www.npmjs.com/package/axe-html-reporter) can be implemented.
+
 ## Useful Commands
 - `npm test` — Run all tests
 - `npx playwright show-report` — Open the HTML report
