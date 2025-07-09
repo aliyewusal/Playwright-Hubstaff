@@ -1,0 +1,98 @@
+# Hubstaff Playwright Test Automation
+
+This repository contains automated end-to-end tests for the Hubstaff web application using [Playwright](https://playwright.dev/).
+
+## Features
+- Automated browser testing with Playwright
+- Visual regression testing with configurable `maxDiffPixelRatio`
+- Page Object Model (POM) design for maintainable tests
+- Playwright authentication setup for efficient login flows
+- Environment variable support via `.env` file
+- HTML test reports and trace collection on failures
+- Parallel test execution and CI-friendly configuration
+
+## Project Structure
+```
+├── pages/                # Page Object Models for Hubstaff app and Temp Email app
+├── tests/                # Test specs and setup scripts
+│   └── auth.setup.ts     # Authentication setup for Playwright tests
+├── playwright.config.ts  # Playwright configuration
+├── .env                  # Environment variables (not committed)
+├── .gitignore            # Git ignore rules
+├── package.json          # Project dependencies and scripts
+```
+
+## Page Object Model (POM)
+The `pages/` directory contains Page Object Model classes for each major page of the Hubstaff application. POM helps to:
+- Encapsulate page structure and actions
+- Promote code reuse and maintainability
+- Simplify test scripts by abstracting UI interactions
+
+Example usage in a test:
+```ts
+import { SignInPage } from '../pages/signInPage';
+// ...
+const signInPage = new SignInPage(page);
+await signInPage.login(email, password);
+```
+
+## Playwright Authentication (`auth.setup.ts`)
+The `tests/auth.setup.ts` file is used to perform authentication once and reuse the login state across tests. This speeds up test execution and avoids repeated logins.
+- Stores authentication state (cookies, local storage) for reuse
+- Reduces flakiness and test time
+
+Learn more: [Playwright Authentication](https://playwright.dev/docs/auth)
+
+## Visual Comparison
+Visual regression testing is enabled using Playwright's snapshot feature. The `maxDiffPixelRatio` option (set in `playwright.config.ts`) controls the allowed percentage of pixel differences between snapshots and actual screenshots.
+- Use `expect(page).toHaveScreenshot()` or `expect(element).toHaveScreenshot()` in tests
+- If the difference exceeds `maxDiffPixelRatio`, the test will fail
+- Adjust the value in the config to make comparisons stricter or more lenient
+
+## Getting Started
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+
+### Installation
+```sh
+npm install
+```
+
+### Environment Variables
+Create a `.env` file in the root directory with the following content:
+```
+EMAIL=your-email@example.com
+PASSWORD=your-password
+```
+
+> **Note:** The `.env` file is excluded from version control.
+
+### Running Tests
+To run all tests:
+```sh
+npm test
+```
+
+### Test Reports
+After running tests, view the HTML report:
+```sh
+npx playwright show-report
+```
+
+### Visual Regression
+The config sets `maxDiffPixelRatio` for snapshot comparisons. Adjust this in `playwright.config.ts` if needed.
+
+## Useful Commands
+- `npm test` — Run all tests
+- `npx playwright show-report` — Open the HTML report
+- `npx playwright codegen` — Launch Playwright code generator
+
+## Folder Details
+- `pages/` — Page Object Model files for different Hubstaff pages
+- `tests/` — Test specs and setup scripts
+- `playwright-report/` — Generated HTML reports (gitignored)
+- `test-results/` — Test artifacts (gitignored)
+
+## License
+This project is licensed under the ISC License.

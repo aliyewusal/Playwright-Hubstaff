@@ -19,7 +19,7 @@ test('Sign in from marketing page navigation bar', async ({ page }) => {
     await expect(page).toHaveURL(/insights/);
 
     // Verify the login was successful by checking the landing page
-    await insightsPage.verifyHighlightsHeaderVisible(); 
+    await insightsPage.verifyHighlightsHeaderVisible();
     // Note: After login, user should have been redirected to Dashboard page (as per requirements)
     await dashboardPage.selectors.dashboardLink.click();
     await expect(page).toHaveURL(/dashboard/);

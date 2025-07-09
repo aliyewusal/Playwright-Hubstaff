@@ -4,15 +4,14 @@ import { PageObjects } from '../pages';
 
 const projectName = `Test Project ${Date.now()}`;
 
+// Use the owner authentication state for this test to bypass the login step
+test.use({ storageState: 'playwright/.auth/owner.json' });
+
 test('Add/create project', async ({ page }) => {
-    const signInPage = new PageObjects.SignInPage(page);
     const projectsPage = new PageObjects.ProjectsPage(page);
 
     // Navigate to the projects page
     await projectsPage.navigateToProjectsPage();
-
-    // Sign in to the application
-    await signInPage.signIn(process.env.EMAIL, process.env.PASSWORD);
 
     // Verify that the user is on the projects page
     await expect(projectsPage.selectors.addProjectButton).toBeVisible();

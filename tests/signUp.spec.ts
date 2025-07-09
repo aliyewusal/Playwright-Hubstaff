@@ -18,7 +18,7 @@ test.describe('Hubstaff Free Trial Signup', () => {
     const marketingPage = new PageObjects.MarketingPage(signupPage);
 
 
-    await test.step('Go to temp-mail and get the email address', async () => {    
+    await test.step('Go to temp-mail and get the email address', async () => {
       await mailPage.navigateToMailPage();
       await mailPage.verifyEmailInputValid();
       userEmail = await mailPage.getEmailAddress();
