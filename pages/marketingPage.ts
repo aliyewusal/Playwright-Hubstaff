@@ -7,7 +7,7 @@ export default class MarketingPage {
   
   constructor(page: Page) {
     this.page = page;
-    this.marketingPageUrl = '/';
+    this.marketingPageUrl = 'https://hubstaff.com/';
     this.selectors = {
       freeTrialButton: page.getByRole('link', { name: 'Free 14-day trial' }).first(),
       signInLink: page.getByRole('link', { name: 'Sign in' }),

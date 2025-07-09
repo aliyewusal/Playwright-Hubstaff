@@ -26,7 +26,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://hubstaff.com/',
+    baseURL: 'https://app.hubstaff.com/',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
@@ -38,9 +38,13 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // Setup project
+    { name: 'setup', testMatch: /.*\.setup\.ts/ },
+  
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      dependencies: ['setup'],
     },
   ],
 });

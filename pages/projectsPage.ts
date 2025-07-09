@@ -7,7 +7,7 @@ export default class ProjectsPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.projectsPageUrl = 'https://app.hubstaff.com/projects';
+        this.projectsPageUrl = '/projects';
         this.selectors = {
             addProjectButton: page.locator('[data-original-title="Add new project to the organization"]'),
             newProjectHeader: page.getByRole('heading', { name: 'New project' }),
