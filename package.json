@@ -12,7 +12,8 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.53.2",
-    "@types/node": "^24.0.10"
+    "@types/node": "^24.0.10",
+    "playwright-ctrf-json-reporter": "^0.0.21"
   },
   "dependencies": {
     "dotenv": "^17.1.0"
