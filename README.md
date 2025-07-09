@@ -141,7 +141,7 @@ npx playwright test tests/a11y/accessibility.spec.ts
 
 > Review and address any reported accessibility issues to improve the usability of the application for all users.
 
-> Note: At the moment there is only playwright reporter is being used, however for more detailed view [axe-html-reporter](https://www.npmjs.com/package/axe-html-reporter) can be implemented.
+> Note: At the moment, there is only the Playwright reporter being used; for a more detailed view, you can implement [axe-html-reporter](https://www.npmjs.com/package/axe-html-reporter).
 
 ## Useful Commands
 - `npm test` — Run all tests
