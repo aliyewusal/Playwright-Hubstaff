@@ -1,6 +1,6 @@
-require("dotenv").config();
 import { test, expect } from "@playwright/test";
 import { PageObjects } from "../pages";
+import "dotenv/config";
 
 test.slow();
 test("Sign in from marketing page navigation bar", async ({ page }) => {
@@ -15,7 +15,7 @@ test("Sign in from marketing page navigation bar", async ({ page }) => {
   await expect(page).toHaveURL(/login/);
 
   // Sign in using the credentials from environment variables
-  await signInPage.signIn(process.env.EMAIL, process.env.PASSWORD);
+  await signInPage.signIn(process.env.EMAIL!, process.env.PASSWORD!);
   await expect(page).toHaveURL(/insights/);
 
   // Verify the login was successful by checking the landing page

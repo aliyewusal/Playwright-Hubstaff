@@ -1,4 +1,4 @@
-require("dotenv").config();
+import "dotenv/config";
 import { test, expect } from "@playwright/test";
 import { PageObjects } from "../pages";
 

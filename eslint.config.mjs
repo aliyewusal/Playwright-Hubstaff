@@ -20,6 +20,7 @@ export default defineConfig([
       "README.md",
       "**/.git/**",
       "**/.*", // Ignore dotfiles
+      "*/auth.setup.ts",
     ],
   },
   { files: ["**/*.{js,mjs,cjs,ts,mts,cts}"], plugins: { js }, extends: ["js/recommended"] },
