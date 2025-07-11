@@ -11,6 +11,7 @@ playwright/
 # Configuration files
 *.config.*
 package.json
+package-lock.json
 README.md
 
 # Version control
