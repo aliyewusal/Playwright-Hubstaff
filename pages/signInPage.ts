@@ -2,7 +2,7 @@ import { Page, Locator } from "@playwright/test";
 
 export default class SignInPage {
   readonly page: Page;
-  selectors: { [key: string]: Locator | any };
+  selectors: Record<string, Locator | any>;
   loginPageUrl: string;
 
   constructor(page: Page) {

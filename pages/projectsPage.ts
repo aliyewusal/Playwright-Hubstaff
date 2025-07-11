@@ -2,7 +2,7 @@ import { Page, Locator, expect } from "@playwright/test";
 
 export default class ProjectsPage {
   readonly page: Page;
-  selectors: { [key: string]: Locator | any };
+  selectors: Record<string, Locator | any>;
   projectsPageUrl: string;
 
   constructor(page: Page) {

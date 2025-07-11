@@ -1,9 +1,9 @@
 import { test as base } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-type AxeFixture = {
+interface AxeFixture {
   makeAxeBuilder: () => AxeBuilder;
-};
+}
 
 export const scopeOfValidation = [
   "wcag2a",
