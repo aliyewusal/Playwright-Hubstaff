@@ -171,6 +171,100 @@ To view test results directly in GitHub Actions, this project uses the [playwrig
 
 > For more details, see the [playwright-ctrf-json-reporter documentation](https://github.com/ctrf-io/playwright-ctrf-json-reporter).
 
+## Code Quality and Git Hooks
+
+This project maintains high code quality through automated linting, formatting, and pre-commit hooks using ESLint, Prettier, and Husky.
+
+### ESLint Configuration
+
+ESLint is configured to catch potential errors and enforce coding standards across JavaScript and TypeScript files. The project uses a flat configuration format with the following features:
+
+- **Base Configuration**: Uses recommended JavaScript and TypeScript ESLint rules
+- **Playwright Plugin**: Includes [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright) for Playwright-specific linting rules
+- **TypeScript Support**: Full TypeScript linting with recommended and stylistic rules
+- **Ignored Files**: Excludes build artifacts, reports, and configuration files from linting
+
+Key files:
+- `eslint.config.mjs` - Main ESLint configuration using the flat config format
+
+Run ESLint:
+```sh
+npx eslint .
+```
+
+Fix auto-fixable issues:
+```sh
+npx eslint . --fix
+```
+
+**Documentation**: [ESLint Getting Started](https://eslint.org/docs/latest/use/getting-started) | [eslint-plugin-playwright](https://github.com/playwright-community/eslint-plugin-playwright)
+
+### Prettier Configuration
+
+Prettier automatically formats code to ensure consistent style across the project. The configuration includes:
+
+- **Semicolons**: Always include semicolons (`"semi": true`)
+- **Quotes**: Use double quotes for strings (`"singleQuote": false`)
+- **Trailing Commas**: ES5-compatible trailing commas (`"trailingComma": "es5"`)
+- **Print Width**: 120 characters per line (`"printWidth": 120`)
+- **Ignored Files**: Excludes build artifacts, reports, and certain configuration files
+
+Key files:
+- `.prettierrc` - Prettier formatting rules
+- `.prettierignore` - Files and directories to exclude from formatting
+
+Run Prettier:
+```sh
+npx prettier --write .
+```
+
+Check formatting without making changes:
+```sh
+npx prettier --check .
+```
+
+**Integration**: ESLint and Prettier are configured to work together using `eslint-config-prettier` to disable conflicting ESLint rules.
+
+**Documentation**: [Prettier Installation](https://prettier.io/docs/install) | [Integrating with Linters](https://prettier.io/docs/integrating-with-linters)
+
+### Husky Git Hooks
+
+Husky manages Git hooks to ensure code quality before commits. The project includes:
+
+- **Pre-commit Hook**: Automatically runs ESLint and Prettier before each commit
+- **Automated Setup**: Hooks are installed automatically when dependencies are installed
+
+Key files:
+- `.husky/pre-commit` - Runs linting and formatting checks before commits
+- `.husky/_/` - Husky internal files for hook management
+
+The pre-commit hook ensures that:
+1. All code passes ESLint checks
+2. All code is properly formatted with Prettier
+3. Only quality code reaches the repository
+
+**Documentation**: [Husky Getting Started](https://typicode.github.io/husky/get-started.html)
+
+### Development Workflow
+
+1. **During Development**: ESLint and Prettier extensions in your IDE provide real-time feedback
+2. **Before Commit**: Husky automatically runs linting and formatting checks
+3. **CI/CD**: Pipeline can run these checks to ensure code quality in pull requests
+
+**Package Scripts**: The following npm scripts are available for code quality tasks:
+```json
+{
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  }
+}
+```
+
+> **Tip**: Install the ESLint and Prettier extensions in VS Code for the best development experience with automatic formatting and error highlighting.
+
 ## Useful Commands
 - `npm test` — Run all tests
 - `npx playwright show-report` — Open the HTML report

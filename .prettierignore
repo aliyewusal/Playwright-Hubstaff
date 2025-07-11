@@ -1,0 +1,24 @@
+# Ignore artifacts:
+build
+coverage
+
+# Generated files and reports
+playwright-report/
+test-results/
+ctrf/
+playwright/
+
+# Configuration files
+*.config.*
+package.json
+package-lock.json
+README.md
+
+# Version control
+.git/
+
+# Dependencies
+node_modules/
+
+# Dotfiles
+.*
