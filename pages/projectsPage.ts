@@ -1,8 +1,24 @@
 import { Page, Locator, expect } from "@playwright/test";
 
+interface ProjectsPageSelectors {
+  addProjectButton: Locator;
+  newProjectHeader: Locator;
+  projectNameInput: Locator;
+  saveButton: Locator;
+  projectCreatedMessage: Locator;
+  projectDeletedMessage: Locator;
+  actionButtonByProjectName: (projectName: string) => Locator;
+  listItemByProjectName: (projectName: string) => Locator;
+  deleteButton: Locator;
+  searchBox: Locator;
+  confirmDeleteCheckbox: Locator;
+  deleteButtonInModal: Locator;
+  noProjectsMessage: Locator;
+}
+
 export default class ProjectsPage {
   readonly page: Page;
-  selectors: Record<string, Locator | any>;
+  selectors: ProjectsPageSelectors;
   projectsPageUrl: string;
 
   constructor(page: Page) {

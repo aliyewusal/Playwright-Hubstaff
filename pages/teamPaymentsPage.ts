@@ -1,8 +1,35 @@
 import { Page, Locator, expect } from "@playwright/test";
 
+interface TeamPaymentsPageSelectors {
+  createPaymentsHeading: Locator;
+  payForHoursTab: Locator;
+  approvedTimesheetsTab: Locator;
+  oneTimeAmountTab: Locator;
+  oneTimeAmountHeading: Locator;
+  membersField: Locator;
+  addedmemberByName: (memberName: string) => Locator;
+  amountPerMemberField: Locator;
+  noteField: Locator;
+  notesInfoText: Locator;
+  memberSelection: (memberName: string) => Locator;
+  createPaymentButton: Locator;
+  paymentSummary: Locator;
+  paymentModalHeader: Locator;
+  createPaymentWizard: Locator;
+  sendExportPaymentWizard: Locator;
+  modalBody: Locator;
+  notNowButton: Locator;
+  closeModalButton: Locator;
+  createPaymentModalButton: Locator;
+  deletePaymentButton: (note: string) => Locator;
+  cellByText: (text: string) => Locator;
+  markedAsPaidMessage: Locator;
+  noteDeletedMessage: Locator;
+}
+
 export default class TeamPaymentsPage {
   readonly page: Page;
-  selectors: Record<string, Locator | any>;
+  selectors: TeamPaymentsPageSelectors;
 
   constructor(page: Page) {
     this.page = page;

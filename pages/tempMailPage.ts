@@ -1,8 +1,16 @@
 import { Page, Locator, expect } from "@playwright/test";
 
+interface TempMailPageSelectors {
+  mailInput: Locator;
+  refreshButton: Locator;
+  confirmationEmail: Locator;
+  mailContent: Locator;
+  hubstaffWelcomeHeading: Locator;
+}
+
 export default class TempMailPage {
   readonly page: Page;
-  selectors: Record<string, Locator | any>;
+  selectors: TempMailPageSelectors;
   constructor(page: Page) {
     this.page = page;
     this.selectors = {

@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 
 export default class MarketingPage {
   page: Page;
-  selectors: Record<string, Locator | any>;
+  selectors: Record<string, Locator>;
   marketingPageUrl: string;
 
   constructor(page: Page) {

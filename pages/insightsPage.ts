@@ -2,7 +2,7 @@ import { Page, Locator, expect } from "@playwright/test";
 
 export default class InsightsPage {
   readonly page: Page;
-  selectors: Record<string, Locator | any>;
+  selectors: Record<string, Locator>;
 
   constructor(page: Page) {
     this.page = page;
