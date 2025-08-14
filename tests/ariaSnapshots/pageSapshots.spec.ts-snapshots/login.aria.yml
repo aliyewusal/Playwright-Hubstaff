@@ -9,8 +9,8 @@
 - img "organization logo"
 - text: Tyler Nimmons CEO of Front Runner Films
 - link "Hubstaff online time tracking":
-  - /url: https://hubstaff.com
-  - img "Hubstaff online time tracking"
+    - /url: https://hubstaff.com
+    - img "Hubstaff online time tracking"
 - heading "Sign in to Hubstaff" [level=2]
 - text: Work email *
 - textbox "Work email *"
@@ -18,10 +18,10 @@
 - textbox "Password *"
 - img "eye-off logo"
 - link "Forgot your password?":
-  - /url: /forgot_password
+    - /url: /forgot_password
 - button "Sign in"
 - link "Log in with SSO":
-  - /url: https://account.hubstaff.com/sso_login
+    - /url: https://account.hubstaff.com/sso_login
 - text: Don't have an account?
 - link "Get started":
-  - /url: https://hubstaff.com/signup?message=
+    - /url: https://hubstaff.com/signup?message=
