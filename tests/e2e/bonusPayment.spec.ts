@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { PageObjects } from "../pages";
+import { PageObjects } from "../../pages";
 
 test.describe("Bonus Payment Creation", () => {
   let paymentLink: string;

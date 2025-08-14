@@ -7,7 +7,7 @@ interface TeamPaymentsPageSelectors {
   oneTimeAmountTab: Locator;
   oneTimeAmountHeading: Locator;
   membersField: Locator;
-  addedmemberByName: (memberName: string) => Locator;
+  addedMemberByName: (memberName: string) => Locator;
   amountPerMemberField: Locator;
   noteField: Locator;
   notesInfoText: Locator;
@@ -40,7 +40,7 @@ export default class TeamPaymentsPage {
       oneTimeAmountTab: page.getByRole("link", { name: "One-time amount" }),
       oneTimeAmountHeading: page.getByRole("heading", { name: "Send payments" }),
       membersField: page.getByRole("textbox", { name: "Select members" }),
-      addedmemberByName: (memberName: string) => page.getByRole("listitem", { name: `${memberName}` }),
+      addedMemberByName: (memberName: string) => page.getByRole("listitem", { name: `${memberName}` }),
       amountPerMemberField: page.getByRole("spinbutton", { name: "Amount per member*" }),
       noteField: page.getByRole("textbox", { name: "Enter a note about the payment" }),
       notesInfoText: page.getByText("Notes are visible to members."),
@@ -77,7 +77,7 @@ export default class TeamPaymentsPage {
     const memberLocator = this.selectors.memberSelection(memberName);
     await expect(memberLocator).toBeVisible();
     await memberLocator.click();
-    await expect(this.selectors.addedmemberByName(memberName)).toBeVisible();
+    await expect(this.selectors.addedMemberByName(memberName)).toBeVisible();
   }
 
   async enterAmountPerMember(amount: string) {

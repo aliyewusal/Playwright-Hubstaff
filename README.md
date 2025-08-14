@@ -45,7 +45,10 @@ npx playwright show-report
 ## Project Structure
 ```
 ├── pages/                # Page Object Models for Hubstaff app and Temp Email app
-├── tests/                # Test specs and setup scripts
+├── tests/
+│   ├── accessibility/    # Accessibility test suite
+│   ├── e2e/              # End-to-end test suite
+│   ├── snapshotTests/    # ARIA snapshot tests
 │   └── auth.setup.ts     # Authentication setup for Playwright tests
 ├── playwright.config.ts  # Playwright configuration
 ├── .env                  # Environment variables (not committed)
