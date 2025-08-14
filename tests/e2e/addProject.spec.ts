@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { test, expect } from "@playwright/test";
-import { PageObjects } from "../pages";
+import { PageObjects } from "../../pages";
 
 const projectName = `Test Project ${Date.now()}`;
 

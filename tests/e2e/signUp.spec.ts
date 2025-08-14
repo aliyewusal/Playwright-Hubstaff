@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { PageObjects } from "../pages";
+import { PageObjects } from "../../pages";
 
 test.describe("Hubstaff Free Trial Signup", () => {
   const firstName = "Test";

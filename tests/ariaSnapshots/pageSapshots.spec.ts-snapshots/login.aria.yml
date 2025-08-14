@@ -1,0 +1,27 @@
+- heading "Welcome to our community" [level=1]
+- text:      Hubstaff allows us to focus on what really matters. We now know more about our business and spend less time managing it, helping us be a better company.
+- img "organization logo"
+- text: John Parker Co-Founder at Quipro      Hubstaff solved our pain point the moment we started using it. Compared to other tools we'd tested, Hubstaff is simple, easy, and synchronizes with the other applications we use.
+- img "organization logo"
+- text: Andriy Sambir CEO at LinkUp      With Hubstaff we can better predict, down to the minute, how long tasks should take, therefore making better informed decisions.
+- img "organization logo"
+- text: Justin Mitchell CEO at Yac      Once we implemented Hubstaff I was amazed to see that some of the projects I thought were going to be profitable, we were blowing through hours that I wasn't aware of.
+- img "organization logo"
+- text: Tyler Nimmons CEO of Front Runner Films
+- link "Hubstaff online time tracking":
+  - /url: https://hubstaff.com
+  - img "Hubstaff online time tracking"
+- heading "Sign in to Hubstaff" [level=2]
+- text: Work email *
+- textbox "Work email *"
+- text: Password *
+- textbox "Password *"
+- img "eye-off logo"
+- link "Forgot your password?":
+  - /url: /forgot_password
+- button "Sign in"
+- link "Log in with SSO":
+  - /url: https://account.hubstaff.com/sso_login
+- text: Don't have an account?
+- link "Get started":
+  - /url: https://hubstaff.com/signup?message=
